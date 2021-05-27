@@ -1,0 +1,40 @@
+<script src="./assets/vendors/myjs.js"></script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12" >
+
+      <div class=" header">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+          <ul class="text-center list-inline py-3 ">
+            <li class="list-inline-item"><a routerLink="/rules" class="btn btn-info">List Rules</a></li>
+            <li class="list-inline-item"><a routerLink="/editrule/add" class="btn btn-info">Add Rule</a></li>
+            <li class="list-inline-item">
+              <button type="submit" (click)="onApply()" class="btn btn-info">Apply</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="my-panel container-fluid">
+
+        <div class="left-panel">
+          <router-outlet></router-outlet>
+        </div>
+        <div class="json-panel card ">
+          <div class="card-body">
+            <label class="json-header">Enter Ur Json here :</label>
+            <textarea  [(ngModel)]="json.content" ng-controller="ctrl"
+                   class="form-control json-text" id="json_text" name="json_text"
+                    >
+            </textarea>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

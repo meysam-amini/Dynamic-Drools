@@ -1,0 +1,33 @@
+<div class="card ">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="table-header">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">When Key</th>
+                <th scope="col">When Value</th>
+                <th scope="col">Then Key</th>
+                <th scope="col">Then Value</th>
+                <th scope="col">Edit</th>
+                <th scope="col">delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rule of rules">
+                <td>{{ rule.id }}</td>
+                <td>{{ rule.when_key }}</td>
+                <td>{{ rule.when_value }}</td>
+                <td>{{ rule.then_key }}</td>
+                <td>{{ rule.then_value }}</td>
+                <td>
+                    <button (click)="editRule(rule)" class="btn btn-success"
+                            routerLink="/editrule/edit">Edit</button>
+               </td>
+                <td>
+                    <button (click)="deleteRule(rule)" class="btn btn-danger" >delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

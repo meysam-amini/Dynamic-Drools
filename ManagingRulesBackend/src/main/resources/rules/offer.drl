@@ -1,0 +1,25 @@
+import org.json.JSONObject;
+
+rule "Rule diomond"
+	when
+    		obj: JSONObject(obj.get("cardType") == "A")
+    	then
+    		obj.put("discount",222);
+    	end
+rule "rule gold"
+	when
+		obj: JSONObject(obj.get("cardType") == "B")
+	then
+		obj.put("discount",333666666);
+	end
+
+	rule "mm"
+	when
+    		obj: JSONObject(obj.get("cardType") == "C")
+    	then
+    		obj.put("discount",444);
+    	end
+
+
+
+

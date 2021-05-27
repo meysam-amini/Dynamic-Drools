@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #ruleForm="ngForm">
+
+
+      <div class="form-group">
+        <label for="when_key">When Key</label>
+        <input type="text" [(ngModel)]="rule.when_key"
+               class="form-control" id="when_key" name="when_key" placeholder="Enter When Key"
+               required #when_key="ngModel">
+      </div>
+      <div *ngIf="!when_key.value" class="alert alert-danger">when key is required</div>
+
+      <div class="form-group">
+        <label for="when_value">When Value</label>
+        <input type="text" [(ngModel)]="rule.when_value"
+               class="form-control" id="when_value" name="when_value" placeholder="Enter When Value"
+               required #when_value="ngModel">
+      </div>
+      <div *ngIf="!when_value.value" class="alert alert-danger">when value is required</div>
+
+      <div class="form-group">
+        <label for="then_key">Then Key</label>
+        <input type="text" [(ngModel)]="rule.then_key"
+               class="form-control" id="then_key" name="then_key" placeholder="Enter Then Key"
+               required #then_key="ngModel">
+      </div>
+      <div *ngIf="!then_key.value" class="alert alert-danger">then key is required</div>
+
+      <div class="form-group">
+        <label for="then_value">Then Value</label>
+        <input type="text" [(ngModel)]="rule.then_value"
+               class="form-control" id="then_value" name="then_value" placeholder="Enter Then Value"
+               required #then_value="ngModel">
+      </div>
+      <div *ngIf="!then_key.value" class="alert alert-danger">then value is required</div>
+
+
+      <button type="submit" [disabled]="!ruleForm.form.valid" class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>

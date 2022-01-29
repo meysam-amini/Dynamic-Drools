@@ -41,11 +41,10 @@ public class dynamicDrools {
         r+="import org.json.JSONObject; ";
         for (int i=0;i<rules.size();i++){
 
-      //      obj: JSONObject(!obj.isNull("color") && obj.getJSONObject("color").get("title") == "Black")
+      // example:     obj: JSONObject(!obj.isNull("color") && obj.getJSONObject("color").get("title") == "Black")
             r+="rule R"+i+" when "+"obj: JSONObject(obj.get('"+rules.get(i).getWhen_key()+"')=='"+rules.get(i).getWhen_value()
                     +"'); then obj.put('"+rules.get(i).getThen_key()+"','"+rules.get(i).getThen_value()+"'); end; ";
-//            r+="rule R"+i+" when "+"obj: JSONObject(obj.getJSONObject('locations').get('"+rules.get(i).getWhen_key()+"')=='"+rules.get(i).getWhen_value()
-//                    +"'); then obj.getJSONObject('locations').put('"+rules.get(i).getThen_key()+"','"+rules.get(i).getThen_value()+"'); end; ";
+
         }
         System.out.println("::::::::::::\n"+r+"/n:::::::::::");
         kfs.write("src/main/resources/rules/offer.drl", r);

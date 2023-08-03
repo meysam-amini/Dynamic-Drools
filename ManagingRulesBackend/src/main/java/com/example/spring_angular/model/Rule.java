@@ -1,20 +1,16 @@
 package com.example.spring_angular.model;
 
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Data
-@ToString
+@Setter
+@Getter
+@ToString@AllArgsConstructor
+@Entity@NoArgsConstructor
 public class Rule implements Serializable {
-
-    public Rule(){
-
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

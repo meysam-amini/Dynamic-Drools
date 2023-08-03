@@ -2,6 +2,7 @@ package com.example.spring_angular.droolsConfig;
 
 import com.example.spring_angular.model.Rule;
 import com.example.spring_angular.repositories.RuleRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.kie.api.KieBase;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
@@ -15,22 +16,15 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Slf4j
 @Component
 public class dynamicDrools {
 
     private  List<Rule> rules;
-    private  Rule rule;
     private KieSession kieSession;
-    private static final String RULES_PATH = "rules/";
 
     @Autowired
     private  RuleRepository ruleRepository;
-
-
-//
-//    public dynamicDrools(RuleRepository ruleRepository) {
-//       this.ruleRepository=ruleRepository;
-//    }
 
 
     public  void initDrools(){
@@ -46,13 +40,13 @@ public class dynamicDrools {
                     +"'); then obj.put('"+rules.get(i).getThen_key()+"','"+rules.get(i).getThen_value()+"'); end; ";
 
         }
-        System.out.println("::::::::::::\n"+r+"/n:::::::::::");
+        log.info("::::::::::::\n"+r+"/n:::::::::::");
         kfs.write("src/main/resources/rules/offer.drl", r);
         KieBuilder kieBuilder = kieServices.newKieBuilder( kfs ).buildAll();
         Results results = kieBuilder.getResults();
         if( results.hasMessages( Message.Level.ERROR ) ){
-            System.out.println( results.getMessages() );
-            throw new IllegalStateException( "### errors ###" );
+            log.info(results.getMessages().toString());
+            throw new IllegalStateException();
         }
         KieContainer kieContainer =
                 kieServices.newKieContainer( kieServices.getRepository().getDefaultReleaseId() );

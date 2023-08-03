@@ -3,6 +3,7 @@ package com.example.spring_angular.service;
 import com.example.spring_angular.droolsConfig.dynamicDrools;
 import com.example.spring_angular.model.myJson;
 import com.example.spring_angular.repositories.JsonRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.Iterator;
 
+@Slf4j
 @Service
 public class jsonService {
 
@@ -35,7 +37,7 @@ public class jsonService {
         while(iterator.hasNext()) {
              key = iterator.next();
         }
-        System.out.println("key: "+key);
+        log.info("key: {} ",key);
         JSONArray jsonArray = jsonObject.getJSONArray(key);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jo = jsonArray.getJSONObject(i);
@@ -53,7 +55,7 @@ public class jsonService {
 
         myJson j=jsonRepository.findById(1L).get();
         j.setContent("{"+key+":"+array_content+"}");
-        System.out.println("saving: "+j.toString());
+        log.info("saving: {}",j.toString());
         jsonRepository.save(j);
     }
 }
